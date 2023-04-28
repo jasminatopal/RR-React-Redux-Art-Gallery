@@ -3,6 +3,8 @@ import { useSelector, useDispatch, connect } from 'react-redux'
 import { clearData, fetchData, incrementId, decrementId, inputId } from './features/dataSlice'
 import { useEffect } from 'react';
 
+const mapStateToProps = state => ({objectid: state.data.objectId});
+
 function App(props) {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.data)
@@ -15,13 +17,15 @@ function App(props) {
     }
   }
 
+
+
   useEffect(() => {
     dispatch(fetchData())
   }, [props.objectId, dispatch])
 
 
   return (
-    <div className="App">
+    <div className="App" style={{'backgroundColor': isLoggedIn ? 'red' : 'white'}}>
       <div>
         <button onClick={() => dispatch(fetchData())}>Thunk!</button>
         <button onClick={() => dispatch(clearData())}>Clear</button>
@@ -40,6 +44,8 @@ function App(props) {
 }
 
 
-const mapStateToProps = (state, ownProps) => ({ objectId: state.data.objectId })
 
 export default connect(mapStateToProps)(App);
+
+
+

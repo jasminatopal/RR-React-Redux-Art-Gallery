@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     objectId: 10245,
-    apiData: {}
+    apiData: {},
+    isLoggedIn:true,
 }
 
 export const dataSlice = createSlice({
